@@ -6,7 +6,7 @@ Site web professionnel avec systeme de prise de rendez-vous en ligne connecte a 
 
 Le site est heberge sur GitHub Pages. Il est automatiquement deploye depuis la branche `main`.
 
-URL : https://maxc55.github.io/enrico-genco-osteopathe
+URL : https://enricogenco.github.io/Ost-opathie-Enrico/
 
 ## Configuration du backend Google Calendar
 
