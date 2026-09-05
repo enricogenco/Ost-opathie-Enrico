@@ -44,9 +44,10 @@ const CONFIG = {
 };
 
 // ===== CORS HEADERS =====
-function setCorsHeaders(output) {
-  output.setHeader('Access-Control-Allow-Origin', '*');
-  return output;
+function jsonOutput(data) {
+  return ContentService
+    .createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 // ===== GET HANDLER =====
@@ -54,18 +55,10 @@ function doGet(e) {
   const action = e.parameter.action;
 
   if (action === 'getSlots') {
-    const date = e.parameter.date; // format YYYY-MM-DD
-    const result = getAvailableSlots(date);
-    return setCorsHeaders(
-      ContentService.createTextOutput(JSON.stringify(result))
-        .setMimeType(ContentService.MimeType.JSON)
-    );
+    return jsonOutput(getAvailableSlots(e.parameter.date));
   }
 
-  return setCorsHeaders(
-    ContentService.createTextOutput(JSON.stringify({ error: 'Unknown action' }))
-      .setMimeType(ContentService.MimeType.JSON)
-  );
+  return jsonOutput({ error: 'Unknown action' });
 }
 
 // ===== POST HANDLER =====
@@ -74,25 +67,16 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
 
     if (data.action === 'book') {
-      const result = bookAppointment(data);
-      return setCorsHeaders(
-        ContentService.createTextOutput(JSON.stringify(result))
-          .setMimeType(ContentService.MimeType.JSON)
-      );
+      return jsonOutput(bookAppointment(data));
     }
 
-    return setCorsHeaders(
-      ContentService.createTextOutput(JSON.stringify({ error: 'Unknown action' }))
-        .setMimeType(ContentService.MimeType.JSON)
-    );
+    return jsonOutput({ error: 'Unknown action' });
+
   } catch (err) {
-    return setCorsHeaders(
-      ContentService.createTextOutput(JSON.stringify({
-        success: false,
-        message: 'Erreur serveur: ' + err.message
-      }))
-        .setMimeType(ContentService.MimeType.JSON)
-    );
+    return jsonOutput({
+      success: false,
+      message: 'Erreur serveur: ' + err.message
+    });
   }
 }
 
