@@ -31,11 +31,27 @@ navLinks.querySelectorAll('a').forEach(link => {
 });
 
 // ===== BOOKING SYSTEM =====
-const WEEKDAYS_AVAILABLE = [1, 2, 3, 4, 5]; // Mon-Fri
-const SLOTS = [
-  '09:00', '09:45', '10:30', '11:15',
-  '13:00', '13:45', '14:30', '15:15', '16:00', '16:45', '17:30'
-];
+const WEEKDAYS_AVAILABLE = [1, 6]; // 1 = lundi, 6 = samedi
+
+const SLOTS_BY_DAY = {
+  // Lundi : 08:00 à 18:30, consultations de 45 minutes
+  1: [
+    '08:00', '08:45', '09:30', '10:15',
+    '11:00', '11:45', '12:30', '13:15',
+    '14:00', '14:45', '15:30', '16:15',
+    '17:00', '17:45'
+  ],
+
+  // Samedi : 08:00 à 12:30
+  6: [
+    '08:00', '08:45', '09:30',
+    '10:15', '11:00', '11:45'
+  ]
+};
+
+function getSlotsForDate(date) {
+  return SLOTS_BY_DAY[date.getDay()] || [];
+}
 
 let currentMonth = new Date();
 let selectedDate = null;
@@ -159,7 +175,7 @@ function renderSlots(dateStr, busySlots) {
   const now = new Date();
   const isToday = dateStr === dateToStr(now);
 
-  SLOTS.forEach(slot => {
+  getSlotsForDate(selectedDate).forEach(slot => {
     if (isToday) {
       const [h, m] = slot.split(':').map(Number);
       if (h < now.getHours() || (h === now.getHours() && m <= now.getMinutes())) {
