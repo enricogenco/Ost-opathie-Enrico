@@ -20,17 +20,27 @@ const CONFIG = {
   CONSULTATION_DURATION: 45, // minutes
   TIMEZONE: 'Europe/Brussels',
 
-  // Creneaux disponibles (format HH:MM)
-  SLOTS: [
-    '09:00', '09:45', '10:30', '11:15',
-    '13:00', '13:45', '14:30', '15:15', '16:00', '16:45', '17:30'
-  ],
+  // Creneaux disponibles selon le jour
+  SLOTS_BY_DAY: {
+    // Lundi
+    1: [
+      '08:00', '08:45', '09:30', '10:15',
+      '11:00', '11:45', '12:30', '13:15',
+      '14:00', '14:45', '15:30', '16:15',
+      '17:00', '17:45'
+    ],
 
-  // Jours disponibles (1=lundi, 5=vendredi)
-  AVAILABLE_DAYS: [1, 2, 3, 4, 5],
+    // Samedi
+    6: [
+      '08:00', '08:45', '09:30',
+      '10:15', '11:00', '11:45'
+    ]
+  },
 
-  // URL du site (pour les liens dans les emails)
-  SITE_URL: 'https://maxc55.github.io/enrico-genco-osteopathe'
+  AVAILABLE_DAYS: [1, 6],
+
+  // Adresse de ton nouveau site
+  SITE_URL: 'https://enricogenco.github.io/Ost-opathie-Enrico/'
 };
 
 // ===== CORS HEADERS =====
@@ -87,6 +97,14 @@ function doPost(e) {
 }
 
 // ===== GET AVAILABLE SLOTS =====
+function getSlotsForDate(dateStr) {
+  // Midi évite certains problèmes de changement de date liés au fuseau horaire
+  const date = new Date(dateStr + 'T12:00:00');
+  const day = date.getDay();
+
+  return CONFIG.SLOTS_BY_DAY[day] || [];
+}
+
 function getAvailableSlots(dateStr) {
   const calendar = CalendarApp.getCalendarById(CONFIG.CALENDAR_ID);
   const date = new Date(dateStr + 'T00:00:00');
@@ -99,7 +117,9 @@ function getAvailableSlots(dateStr) {
   // Find which slots are booked
   const bookedSlots = [];
 
-  CONFIG.SLOTS.forEach(slot => {
+  const slots = getSlotsForDate(dateStr);
+
+  slots.forEach(slot => {
     const [hours, minutes] = slot.split(':').map(Number);
     const slotStart = new Date(dateStr + 'T' + slot + ':00');
     const slotEnd = new Date(slotStart.getTime() + CONFIG.CONSULTATION_DURATION * 60000);
@@ -119,7 +139,7 @@ function getAvailableSlots(dateStr) {
   return {
     date: dateStr,
     bookedSlots: bookedSlots,
-    allSlots: CONFIG.SLOTS
+    allSlots: slots
   };
 }
 
@@ -130,6 +150,15 @@ function bookAppointment(data) {
   // Validate
   if (!date || !time || !name || !email || !phone) {
     return { success: false, message: 'Informations manquantes.' };
+  }
+
+  const allowedSlots = getSlotsForDate(date);
+
+  if (!allowedSlots.includes(time)) {
+    return {
+      success: false,
+      message: 'Ce jour ou cet horaire n’est pas disponible.'
+    };
   }
 
   // Check slot is still available
@@ -159,9 +188,7 @@ function bookAppointment(data) {
   ].filter(Boolean).join('\n');
 
   const event = calendar.createEvent(eventTitle, startTime, endTime, {
-    description: eventDescription,
-    guests: email,
-    sendInvites: true
+    description: eventDescription
   });
 
   // Send confirmation email to patient
