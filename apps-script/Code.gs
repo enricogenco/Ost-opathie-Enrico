@@ -19,6 +19,7 @@ const CONFIG = {
   OSTEO_NAME: 'Enrico Genco',
   CONSULTATION_DURATION: 45, // minutes
   TIMEZONE: 'Europe/Brussels',
+  OPENING_DATE: '2026-10-01',
 
   // Creneaux disponibles selon le jour
   SLOTS_BY_DAY: {
