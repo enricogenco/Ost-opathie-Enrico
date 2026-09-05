@@ -167,9 +167,9 @@ const TRANSLATIONS = {
 
   "cancel.title": { fr: "Politique d'annulation", nl: "Annuleringsbeleid", en: "Cancellation policy" },
   "cancel.text": {
-    fr: "Tout rendez-vous non annulé au moins <strong>24 heures à l'avance</strong> sera facturé.",
-    nl: "Elke afspraak die niet minstens <strong>24 uur op voorhand</strong> geannuleerd wordt, zal aangerekend worden.",
-    en: "Any appointment not cancelled at least <strong>24 hours in advance</strong> will be charged."
+    fr: "En cas d'empêchement, merci de nous prévenir au minimum <strong>24 heures à l'avance</strong>, par téléphone, SMS ou e-mail. Toute consultation non annulée dans ce délai sera facturée.",
+    nl: "Bij verhindering vragen wij u om ons minstens <strong>24 uur op voorhand</strong> te verwittigen via telefoon, sms of e-mail. Elke consultatie die niet binnen deze termijn wordt geannuleerd, zal worden aangerekend.",
+    en: "If you are unable to attend, please notify us at least <strong>24 hours in advance</strong> by phone, SMS or email. Any consultation not cancelled within this period will be charged."
   },
   "reimb.title": { fr: "Remboursement mutuelle", nl: "Terugbetaling ziekenfonds", en: "Health insurance reimbursement" },
   "reimb.text": {
