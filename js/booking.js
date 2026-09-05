@@ -1,6 +1,6 @@
 // ===== CONFIGURATION =====
 // Replace this URL with your deployed Google Apps Script Web App URL
-const APPS_SCRIPT_URL = '';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1eY50_cwXzjZrdhFckJh7T4OathdcTtuZp9BGFHmfq5vR4FoP6u57sn6xvs-YMq1S/exec';
 
 // ===== EMAILJS CONFIGURATION =====
 // 1. Créer un compte gratuit sur https://www.emailjs.com
