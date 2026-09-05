@@ -32,6 +32,8 @@ navLinks.querySelectorAll('a').forEach(link => {
 
 // ===== BOOKING SYSTEM =====
 const WEEKDAYS_AVAILABLE = [1, 6]; // 1 = lundi, 6 = samedi
+const OPENING_DATE = new Date(2026, 9, 1); // 1er octobre 2026
+OPENING_DATE.setHours(0, 0, 0, 0);
 
 const SLOTS_BY_DAY = {
   // Lundi : 08:00 à 19:00, consultations de 45 minutes
@@ -111,8 +113,9 @@ function renderCalendar() {
 
     const isWeekday = WEEKDAYS_AVAILABLE.includes(date.getDay());
     const isFuture = date >= today;
+    const isAfterOpening = date >= OPENING_DATE;
 
-    if (isWeekday && isFuture) {
+    if (isWeekday && isFuture && isAfterOpening) {
       btn.classList.add('available');
       btn.addEventListener('click', () => selectDate(date));
     }
@@ -141,6 +144,10 @@ function dateToStr(date) {
 }
 
 async function selectDate(date) {
+  if (date < OPENING_DATE) {
+    return;
+  }
+
   selectedDate = date;
   selectedSlot = null;
   renderCalendar();
