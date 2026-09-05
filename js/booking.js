@@ -34,7 +34,7 @@ navLinks.querySelectorAll('a').forEach(link => {
 const WEEKDAYS_AVAILABLE = [1, 6]; // 1 = lundi, 6 = samedi
 
 const SLOTS_BY_DAY = {
-  // Lundi : 08:00 à 18:30, consultations de 45 minutes
+  // Lundi : 08:00 à 19:00, consultations de 45 minutes
   1: [
     '08:00', '08:45', '09:30', '10:15',
     '11:00', '11:45', '12:30', '13:15',
