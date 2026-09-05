@@ -91,6 +91,14 @@ function getSlotsForDate(dateStr) {
 }
 
 function getAvailableSlots(dateStr) {
+  if (dateStr < CONFIG.OPENING_DATE) {
+    return {
+      date: dateStr,
+      bookedSlots: [],
+      allSlots: []
+    };
+  }
+
   const calendar = CalendarApp.getCalendarById(CONFIG.CALENDAR_ID);
   const date = new Date(dateStr + 'T00:00:00');
 
@@ -135,6 +143,12 @@ function bookAppointment(data) {
   // Validate
   if (!date || !time || !name || !email || !phone) {
     return { success: false, message: 'Informations manquantes.' };
+  }
+  if (date < CONFIG.OPENING_DATE) {
+    return {
+      success: false,
+      message: 'Les rendez-vous sont disponibles à partir du 1er octobre 2026.'
+    };
   }
 
   const allowedSlots = getSlotsForDate(date);
