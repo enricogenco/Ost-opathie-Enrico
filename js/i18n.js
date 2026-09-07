@@ -1,14 +1,14 @@
 // ===== I18N : FR / NL / EN =====
 const TRANSLATIONS = {
   "meta.title": {
-    fr: "Enrico Genco — Ostéopathe à Bruxelles",
-    nl: "Enrico Genco — Osteopaat in Brussel",
-    en: "Enrico Genco — Osteopath in Brussels"
+    fr: "Enrico Genco — Ostéopathe à Berchem-Sainte-Agathe, Bruxelles",
+    nl: "Enrico Genco — Osteopaat in Sint-Agatha-Berchem, Brussel",
+    en: "Enrico Genco — Osteopath in Berchem-Sainte-Agathe, Brussels"
   },
   "meta.description": {
-    fr: "Enrico Genco, ostéopathe à Bruxelles. Consultations pour adultes, enfants, sportifs, femmes enceintes et seniors. Prenez rendez-vous en ligne.",
-    nl: "Enrico Genco, osteopaat in Brussel. Consultaties voor volwassenen, kinderen, sporters, zwangere vrouwen en senioren. Maak online een afspraak.",
-    en: "Enrico Genco, osteopath in Brussels. Consultations for adults, children, athletes, pregnant women and seniors. Book your appointment online."
+    fr: "Enrico Genco, ostéopathe à Berchem-Sainte-Agathe, Bruxelles. Consultations pour adultes, enfants, sportifs, femmes enceintes et seniors. Prenez rendez-vous en ligne.",
+    nl: "Enrico Genco, osteopaat in Sint-Agatha-Berchem, Brussel. Consultaties voor volwassenen, kinderen, sporters, zwangere vrouwen en senioren. Maak online een afspraak.",
+    en: "Enrico Genco, osteopath in Berchem-Sainte-Agathe, Brussels. Consultations for adults, children, athletes, pregnant women and seniors. Book your appointment online."
   },
   "nav.about": { fr: "À propos", nl: "Over mij", en: "About" },
   "nav.services": { fr: "Consultations", nl: "Consultaties", en: "Consultations" },
@@ -16,7 +16,7 @@ const TRANSLATIONS = {
   "nav.contact": { fr: "Contact", nl: "Contact", en: "Contact" },
   "nav.rdv": { fr: "Prendre RDV", nl: "Afspraak maken", en: "Book Appointment" },
 
-  "hero.subtitle": { fr: "Ostéopathe D.O. à Bruxelles", nl: "Osteopaat D.O. in Brussel", en: "Osteopath D.O. in Brussels" },
+  "hero.subtitle": { fr: "Ostéopathe D.O. à Berchem-Sainte-Agathe, Bruxelles", nl: "Osteopaat D.O. in Sint-Agatha-Berchem, Brussel", en: "Osteopath D.O. in Berchem-Sainte-Agathe, Brussels" },
   "hero.description": {
     fr: "Une prise en charge rigoureuse, structurée et personnalisée, fondée sur les données scientifiques actuelles, pour vous accompagner efficacement vers un mieux-être durable.",
     nl: "Een grondige, gestructureerde en persoonlijke aanpak, gebaseerd op actuele wetenschappelijke inzichten, om u doeltreffend naar een duurzaam welzijn te begeleiden.",
@@ -307,9 +307,9 @@ const TRANSLATIONS = {
   },
 
   "footer.text": {
-    fr: "© 2026 Enrico Genco — Ostéopathe D.O. à Bruxelles",
-    nl: "© 2026 Enrico Genco — Osteopaat D.O. in Brussel",
-    en: "© 2026 Enrico Genco — Osteopath D.O. in Brussels"
+    fr: "© 2026 Enrico Genco — Ostéopathe D.O. à Berchem-Sainte-Agathe, Bruxelles",
+    nl: "© 2026 Enrico Genco — Osteopaat D.O. in Sint-Agatha-Berchem, Brussel",
+    en: "© 2026 Enrico Genco — Osteopath D.O. in Berchem-Sainte-Agathe, Brussels"
   }
 };
 
