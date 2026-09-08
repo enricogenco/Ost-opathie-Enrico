@@ -368,13 +368,20 @@ function applyLanguage(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const initialLang = getStoredLang() || DEFAULT_LANG;
+  // Each public language has its own crawlable URL for search engines.
+  const pathLang = location.pathname.match(/^\/(nl|en)(?:\/|$)/)?.[1];
+  const htmlLang = document.documentElement.getAttribute('lang');
+  const initialLang = pathLang || (['fr','nl','en'].includes(htmlLang) ? htmlLang : null) || getStoredLang() || DEFAULT_LANG;
   applyLanguage(initialLang);
 
+  const languageUrls = { fr: '/', nl: '/nl/', en: '/en/' };
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.getAttribute('data-lang');
-      if (lang !== currentLang) applyLanguage(lang);
+      storeLang(lang);
+      const target = languageUrls[lang] || '/';
+      if (location.pathname !== target) location.href = target;
+      else if (lang !== currentLang) applyLanguage(lang);
     });
   });
 });

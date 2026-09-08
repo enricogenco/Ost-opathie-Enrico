@@ -1,0 +1,18 @@
+SEO update prepared for osteogenco.com
+
+What changed
+- French remains at https://www.osteogenco.com/
+- Dutch has a crawlable page at https://www.osteogenco.com/nl/
+- English has a crawlable page at https://www.osteogenco.com/en/
+- Added canonical and hreflang links for FR/NL/EN.
+- Localized page titles and meta descriptions.
+- Localized visible HTML is present before JavaScript runs.
+- Language buttons now navigate to the dedicated language URLs.
+- sitemap.xml now lists all three language URLs.
+- Existing design, booking code, contact details, CNAME and assets are preserved.
+
+After deployment
+1. Wait for GitHub Pages deployment to finish.
+2. Open /, /nl/ and /en/ and test language buttons + booking.
+3. In Google Search Console, resubmit https://www.osteogenco.com/sitemap.xml once.
+4. Request indexing for /nl/ and /en/ once.
