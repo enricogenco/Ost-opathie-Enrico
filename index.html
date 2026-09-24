@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 
 <html lang="fr">
 <head>
@@ -40,14 +39,27 @@
     "Brussels"
   ],
   "description": "Cabinet d’ostéopathie d’Enrico Genco à Berchem-Sainte-Agathe, Bruxelles. Informations, motifs de consultation et rendez-vous en ligne.",
-  "priceRange": "65 EUR",
-  "inLanguage": "fr"
+  "priceRange": "65 EUR"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.osteogenco.com/#webpage",
+  "url": "https://www.osteogenco.com/",
+  "name": "Enrico Genco — Ostéopathe à Berchem-Sainte-Agathe, Bruxelles",
+  "description": "Enrico Genco, ostéopathe D.O. à Berchem-Sainte-Agathe (Bruxelles). Consultations pour adultes, sportifs et familles, notamment pour douleurs du dos et troubles musculosquelettiques. Rendez-vous en ligne.",
+  "inLanguage": "fr",
+  "about": {
+    "@id": "https://www.osteogenco.com/#cabinet"
+  }
 }
 </script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="css/style.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
 <link href="https://www.osteogenco.com/" hreflang="fr" rel="alternate"/><link href="https://www.osteogenco.com/nl/" hreflang="nl" rel="alternate"/><link href="https://www.osteogenco.com/en/" hreflang="en" rel="alternate"/><link href="https://www.osteogenco.com/" hreflang="x-default" rel="alternate"/></head>
 <body>
 <!-- Navigation -->
@@ -55,9 +67,9 @@
 <div class="container nav-container">
 <div class="nav-left">
 <div aria-label="Choix de la langue" class="lang-switcher" id="langSwitcher" role="group">
-<button class="lang-btn" data-lang="fr" type="button">FR</button>
-<button class="lang-btn" data-lang="nl" type="button">NL</button>
-<button class="lang-btn" data-lang="en" type="button">EN</button>
+<a class="lang-btn active" href="https://www.osteogenco.com/" aria-current="page">FR</a>
+<a class="lang-btn" href="https://www.osteogenco.com/nl/">NL</a>
+<a class="lang-btn" href="https://www.osteogenco.com/en/">EN</a>
 </div>
 <a class="nav-logo" href="#hero">Enrico Genco</a>
 </div>
@@ -101,7 +113,7 @@
 </div>
 <div class="hero-image">
 <div class="hero-image-wrapper">
-<img alt="Enrico Genco, ostéopathe" data-i18n="hero.imgAlt" data-i18n-attr="alt" loading="eager" src="assets/portrait.jpg"/>
+<img alt="Enrico Genco, ostéopathe" data-i18n="hero.imgAlt" data-i18n-attr="alt" loading="eager" src="/assets/portrait.jpg"/>
 </div>
 </div>
 </div>
@@ -494,7 +506,7 @@
 </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/booking.js?v=2"></script>
+<script src="/js/i18n.js"></script>
+<script src="/js/booking.js?v=2"></script>
 </body>
 </html>
