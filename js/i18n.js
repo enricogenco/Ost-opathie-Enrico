@@ -313,75 +313,14 @@ const TRANSLATIONS = {
   }
 };
 
+// The static HTML defines the language for this URL. Language links navigate normally.
+// Keep translations for dynamic booking UI without rewriting the page or its metadata.
 const DEFAULT_LANG = 'fr';
-let currentLang = DEFAULT_LANG;
+const htmlLang = document.documentElement.lang;
+const currentLang = ['fr', 'nl', 'en'].includes(htmlLang) ? htmlLang : DEFAULT_LANG;
 
 function t(key) {
   const entry = TRANSLATIONS[key];
   if (!entry) return '';
   return entry[currentLang] || entry.fr || '';
 }
-
-function getStoredLang() {
-  try {
-    const stored = localStorage.getItem('enricoGencoLang');
-    if (stored && TRANSLATIONS['nav.about'][stored]) return stored;
-  } catch (e) { /* localStorage unavailable */ }
-  return null;
-}
-
-function storeLang(lang) {
-  try {
-    localStorage.setItem('enricoGencoLang', lang);
-  } catch (e) { /* ignore */ }
-}
-
-function applyLanguage(lang) {
-  currentLang = lang;
-  document.documentElement.setAttribute('lang', lang);
-
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    const value = t(key);
-    if (!value) return;
-    if (el.hasAttribute('data-i18n-attr')) {
-      el.setAttribute(el.getAttribute('data-i18n-attr'), value);
-    } else {
-      el.textContent = value;
-    }
-  });
-
-  document.querySelectorAll('[data-i18n-html]').forEach(el => {
-    const key = el.getAttribute('data-i18n-html');
-    const value = t(key);
-    if (value) el.innerHTML = value;
-  });
-
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-  });
-
-  storeLang(lang);
-
-  // Let other scripts (booking.js) know the language changed
-  document.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Each public language has its own crawlable URL for search engines.
-  const pathLang = location.pathname.match(/^\/(nl|en)(?:\/|$)/)?.[1];
-  const htmlLang = document.documentElement.getAttribute('lang');
-  const initialLang = pathLang || (['fr','nl','en'].includes(htmlLang) ? htmlLang : null) || getStoredLang() || DEFAULT_LANG;
-  applyLanguage(initialLang);
-
-  const languageUrls = { fr: '/', nl: '/nl/', en: '/en/' };
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.getAttribute('data-lang');
-      storeLang(lang);
-      const target = languageUrls[lang] || '/';
-      if (location.pathname !== target) location.href = target;
-      else if (lang !== currentLang) applyLanguage(lang);
-    });
-  });
-});
