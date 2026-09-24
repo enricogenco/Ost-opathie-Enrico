@@ -59,7 +59,6 @@ let currentMonth = new Date();
 let selectedDate = null;
 let selectedSlot = null;
 let bookedSlots = {}; // Cache: { 'YYYY-MM-DD': ['09:00', '10:30', ...] }
-let lastFormData = null; // Cache for re-rendering confirmation on language change
 
 const calDays = document.getElementById('calDays');
 const calMonth = document.getElementById('calMonth');
@@ -299,7 +298,6 @@ document.getElementById('bookingForm').addEventListener('submit', async (e) => {
   }
 
   if (success) {
-    lastFormData = formData;
     goToStep3(formData);
   }
 });
@@ -328,7 +326,6 @@ function goToStep3(data) {
 document.getElementById('newBooking').addEventListener('click', () => {
   selectedDate = null;
   selectedSlot = null;
-  lastFormData = null;
   step1.classList.remove('hidden');
   step2.classList.add('hidden');
   step3.classList.add('hidden');
@@ -345,30 +342,6 @@ calPrev.addEventListener('click', () => {
 calNext.addEventListener('click', () => {
   currentMonth.setMonth(currentMonth.getMonth() + 1);
   renderCalendar();
-});
-
-// Re-render dynamic (JS-generated) text when the language changes
-document.addEventListener('languagechange', () => {
-  renderCalendar();
-
-  if (!step1.classList.contains('hidden')) {
-    if (selectedDate) {
-      slotsTitle.textContent = formatDateLong(selectedDate);
-      renderSlots(dateToStr(selectedDate), bookedSlots[dateToStr(selectedDate)] || []);
-    } else {
-      slotsTitle.textContent = t('slots.selectDateTitle');
-      slotsList.innerHTML = `<p class="slots-empty">${t('slots.selectDateHint')}</p>`;
-    }
-  }
-
-  if (!step2.classList.contains('hidden') && selectedDate && selectedSlot) {
-    document.getElementById('summaryDate').textContent = formatDateLong(selectedDate);
-    document.getElementById('summaryTime').textContent = `${selectedSlot}${t('slots.consultationSuffix')}`;
-  }
-
-  if (!step3.classList.contains('hidden') && lastFormData) {
-    renderConfirmationDetails(lastFormData);
-  }
 });
 
 // Init

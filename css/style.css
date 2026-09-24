@@ -108,6 +108,7 @@ ul {
 }
 
 .lang-btn {
+  line-height: normal;
   border: none;
   background: transparent;
   font-family: var(--font-sans);
