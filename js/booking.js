@@ -31,7 +31,7 @@ navLinks.querySelectorAll('a').forEach(link => {
 });
 
 // ===== BOOKING SYSTEM =====
-const WEEKDAYS_AVAILABLE = [1, 6]; // 1 = lundi, 6 = samedi
+const WEEKDAYS_AVAILABLE = [1, 2, 6]; // 1 = lundi, 2 = mardi,  6 = samedi
 const OPENING_DATE = new Date(2026, 9, 1); // 1er octobre 2026
 OPENING_DATE.setHours(0, 0, 0, 0);
 
@@ -43,6 +43,11 @@ const SLOTS_BY_DAY = {
     '14:00', '14:45', '15:30', '16:15',
     '17:00', '17:45', '18:15'
   ],
+
+  // Mardi : départs de 08:00 à 11:00, fin à 11:45
+2: [
+    '08:00', '08:45', '09:30', '10:15', '11:00'
+],
 
   // Samedi : départs de 08:00 à 11:00, fin à 11:45
   6: [
