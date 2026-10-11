@@ -31,6 +31,11 @@ const CONFIG = {
       '17:00', '17:45', '18:15'
     ],
 
+// Mardi
+2: [
+  '08:00', '08:45', '09:30', '10:15', '11:00'
+],
+
     // Samedi
     6: [
       '08:00', '08:45', '09:30',
@@ -38,7 +43,7 @@ const CONFIG = {
     ]
   },
 
-  AVAILABLE_DAYS: [1, 6],
+  AVAILABLE_DAYS: [1, 2, 6],
 
   // Adresse de ton nouveau site
   SITE_URL: 'https://enricogenco.github.io/Ost-opathie-Enrico/'
